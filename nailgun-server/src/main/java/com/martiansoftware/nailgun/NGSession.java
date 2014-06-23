@@ -345,10 +345,15 @@ public class NGSession extends Thread {
                 }
 
                 sockout.flush();
-                socket.close();
 
             } catch (Throwable t) {
                 t.printStackTrace();
+            } finally {
+                try{
+                    socket.close();
+                } catch (Throwable t) {
+                    t.printStackTrace();
+                }
             }
 
             ((ThreadLocalInputStream) System.in).init(null);
